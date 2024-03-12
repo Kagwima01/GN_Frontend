@@ -102,7 +102,6 @@ const HomePage = () => {
         </Box>
         {loading ? (
           <Flex
-            Flex
             flex="1"
             overflow="hidden"
             alignItems={"center"}
