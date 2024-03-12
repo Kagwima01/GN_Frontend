@@ -23,7 +23,7 @@ import SalesScreen from "./screens/SalesScreen";
 import SavedScreen from "./screens/SavedScreen";
 import OutOfStockScreen from "./screens/OutOfStockScreen";
 import InfoScreen from "./screens/InfoScreen";
-import UpdateProductScreen from "./screens/updateProductScreen";
+import UpdateProductScreen from "./screens/UpdateProductScreen";
 //components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
