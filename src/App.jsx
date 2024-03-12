@@ -36,7 +36,9 @@ const App = () => {
 
   useEffect(() => {
     const googleKey = async () => {
-      const { data: googleId } = await axios.get("/api/config/web-google");
+      const { data: googleId } = await axios.get(
+        "https://gn-backend.onrender.com/api/config/web-google"
+      );
       setGoogleClient(googleId);
     };
     googleKey();
