@@ -6,11 +6,12 @@ import {
   setLoading,
   setProducts,
 } from "../slices/filters";
+import { ipAddress } from "../../constants";
 
 export const getCategories = () => async (dispatch) => {
   dispatch(setLoading());
   try {
-    const { data } = await axios.get("/api/filters/categories");
+    const { data } = await axios.get(`${ipAddress}/api/filters/categories`);
     const categories = data;
     dispatch(setCategories(categories));
   } catch (error) {
@@ -28,7 +29,7 @@ export const getCategories = () => async (dispatch) => {
 export const getBrands = () => async (dispatch) => {
   dispatch(setLoading());
   try {
-    const { data } = await axios.get("/api/filters/brands");
+    const { data } = await axios.get(`${ipAddress}/api/filters/brands`);
     const brands = data;
     dispatch(setBrands(brands));
   } catch (error) {
@@ -47,7 +48,9 @@ export const getBrands = () => async (dispatch) => {
 export const getProductsByCategory = (category) => async (dispatch) => {
   dispatch(setLoading());
   try {
-    const { data } = await axios.get(`/api/products/category/${category}`);
+    const { data } = await axios.get(
+      `${ipAddress}/api/products/category/${category}`
+    );
 
     dispatch(setProducts(data));
   } catch (error) {
@@ -66,7 +69,9 @@ export const getProductsByCategory = (category) => async (dispatch) => {
 export const getProductsByBrand = (brand) => async (dispatch) => {
   dispatch(setLoading());
   try {
-    const { data } = await axios.get(`/api/products/brand/${brand}`);
+    const { data } = await axios.get(
+      `${ipAddress}/api/products/brand/${brand}`
+    );
 
     dispatch(setProducts(data));
   } catch (error) {

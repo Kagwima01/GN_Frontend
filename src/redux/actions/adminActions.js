@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ipAddress } from "../../constants";
 import {
   setProducts,
   setProductUpdateFlag,
@@ -29,7 +30,7 @@ export const getAllUsers = () => async (dispatch, getState) => {
   };
 
   try {
-    const { data } = await axios.get("api/users", config);
+    const { data } = await axios.get(`${ipAddress}/api/users`, config);
     dispatch(getUsers(data));
   } catch (error) {
     setError(
@@ -56,7 +57,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
   };
 
   try {
-    const { data } = await axios.delete(`api/users/${id}`, config);
+    const { data } = await axios.delete(`${ipAddress}/api/users/${id}`, config);
     dispatch(userDelete(data));
   } catch (error) {
     setError(
@@ -83,7 +84,7 @@ export const getAllSales = () => async (dispatch, getState) => {
   };
 
   try {
-    const { data } = await axios.get("api/sales", config);
+    const { data } = await axios.get(`${ipAddress}/api/sales`, config);
     dispatch(getSales(data));
   } catch (error) {
     setError(
@@ -110,7 +111,7 @@ export const setConfirmed = (id) => async (dispatch, getState) => {
   };
 
   try {
-    await axios.put(`api/sales/confirm-sale/${id}`, {}, config);
+    await axios.put(`${ipAddress}/api/sales/confirm-sale/${id}`, {}, config);
     dispatch(setConfirmedFlag());
   } catch (error) {
     setError(
@@ -137,7 +138,7 @@ export const deleteSale = (id) => async (dispatch, getState) => {
   };
 
   try {
-    const { data } = await axios.delete(`api/sales/${id}`, config);
+    const { data } = await axios.delete(`${ipAddress}/api/sales/${id}`, config);
     dispatch(salesDelete(data));
   } catch (error) {
     setError(
@@ -262,7 +263,10 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
   };
 
   try {
-    const { data } = await axios.delete(`api/products/${id}`, config);
+    const { data } = await axios.delete(
+      `${ipAddress}/api/products/${id}`,
+      config
+    );
     dispatch(setProducts(data));
     dispatch(setProductUpdateFlag());
     dispatch(resetError());
@@ -292,7 +296,11 @@ export const uploadProduct = (newProduct) => async (dispatch, getState) => {
   };
 
   try {
-    const { data } = await axios.post(`api/products`, newProduct, config);
+    const { data } = await axios.post(
+      `${ipAddress}/api/products`,
+      newProduct,
+      config
+    );
     dispatch(setProducts(data));
     dispatch(setProductUpdateFlag());
   } catch (error) {

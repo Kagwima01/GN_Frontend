@@ -9,11 +9,12 @@ import {
   resetError,
 } from "../slices/product";
 import axios from "axios";
+import { ipAddress } from "../../constants";
 
 export const getProducts = (page) => async (dispatch) => {
   dispatch(setLoading());
   try {
-    const { data } = await axios.get(`/api/products/${page}/${24}`);
+    const { data } = await axios.get(`${ipAddress}/api/products/${page}/${24}`);
     const { products, pagination } = data;
     dispatch(setProducts(products));
     dispatch(setPagination(pagination));
@@ -43,7 +44,10 @@ export const getOutOfStock = (stock) => async (dispatch, getState) => {
     },
   };
   try {
-    const { data } = await axios.get(`/api/products/out/${stock}`, config);
+    const { data } = await axios.get(
+      `${ipAddress}/api/products/out/${stock}`,
+      config
+    );
     const products = data;
     dispatch(setProducts(products));
   } catch (error) {
@@ -99,7 +103,7 @@ export const toggleFavorites = (toggle) => async (dispatch, getState) => {
 export const getProduct = (id) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
-    const { data } = await axios.get(`/api/products/${id}`);
+    const { data } = await axios.get(`${ipAddress}/api/products/${id}`);
     dispatch(setProduct(data));
   } catch (error) {
     dispatch(

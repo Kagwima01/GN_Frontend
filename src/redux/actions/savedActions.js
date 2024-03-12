@@ -6,11 +6,12 @@ import {
   saveItemRemoval,
   clearSave,
 } from "../slices/save";
+import { ipAddress } from "../../constants";
 
 export const addSaveItem = (id) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
-    const { data } = await axios.get(`/api/products/${id}`);
+    const { data } = await axios.get(`${ipAddress}/api/products/${id}`);
     const itemToAdd = {
       id: data._id,
       name: data.name,
