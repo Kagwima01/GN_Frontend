@@ -1,0 +1,307 @@
+import axios from "axios";
+import {
+  setProducts,
+  setProductUpdateFlag,
+  setProduct,
+} from "../slices/product";
+import {
+  setError,
+  setLoading,
+  resetError,
+  getUsers,
+  userDelete,
+  getSales,
+  setConfirmedFlag,
+  salesDelete,
+} from "../slices/admin";
+
+export const getAllUsers = () => async (dispatch, getState) => {
+  setLoading();
+  const {
+    user: { userInfo },
+  } = getState();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${userInfo.token}`,
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const { data } = await axios.get("api/users", config);
+    dispatch(getUsers(data));
+  } catch (error) {
+    setError(
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+        ? error.message
+        : "An expected error has occured. Please try again later."
+    );
+  }
+};
+
+export const deleteUser = (id) => async (dispatch, getState) => {
+  setLoading();
+  const {
+    user: { userInfo },
+  } = getState();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${userInfo.token}`,
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const { data } = await axios.delete(`api/users/${id}`, config);
+    dispatch(userDelete(data));
+  } catch (error) {
+    setError(
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+        ? error.message
+        : "An expected error has occured. Please try again later."
+    );
+  }
+};
+
+export const getAllSales = () => async (dispatch, getState) => {
+  setLoading();
+  const {
+    user: { userInfo },
+  } = getState();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${userInfo.token}`,
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const { data } = await axios.get("api/sales", config);
+    dispatch(getSales(data));
+  } catch (error) {
+    setError(
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+        ? error.message
+        : "An expected error has occured. Please try again later."
+    );
+  }
+};
+
+export const setConfirmed = (id) => async (dispatch, getState) => {
+  setLoading();
+  const {
+    user: { userInfo },
+  } = getState();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${userInfo.token}`,
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    await axios.put(`api/sales/confirm-sale/${id}`, {}, config);
+    dispatch(setConfirmedFlag());
+  } catch (error) {
+    setError(
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+        ? error.message
+        : "An expected error has occured. Please try again later."
+    );
+  }
+};
+
+export const deleteSale = (id) => async (dispatch, getState) => {
+  setLoading();
+  const {
+    user: { userInfo },
+  } = getState();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${userInfo.token}`,
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const { data } = await axios.delete(`api/sales/${id}`, config);
+    dispatch(salesDelete(data));
+  } catch (error) {
+    setError(
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+        ? error.message
+        : "An expected error has occured. Please try again later."
+    );
+  }
+};
+
+export const resetErrorAndRemoval = () => async (dispatch) => {
+  dispatch(resetError());
+};
+
+export const updateProduct =
+  (
+    id,
+    name,
+    imageOne,
+    imageTwo,
+    brand,
+    category,
+    description,
+    buyingPrice,
+    sellingPrice,
+    stock,
+    productIsNew
+  ) =>
+  async (dispatch, getState) => {
+    setLoading();
+
+    const {
+      user: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const { data } = await axios.put(
+        "api/products",
+        {
+          id,
+          name,
+          imageOne,
+          imageTwo,
+          brand,
+          category,
+          description,
+          sellingPrice,
+          buyingPrice,
+          stock,
+          productIsNew,
+        },
+        config
+      );
+      dispatch(setProducts(data));
+      dispatch(setProductUpdateFlag());
+    } catch (error) {
+      setError(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+          ? error.message
+          : "An expected error has occured. Please try again later."
+      );
+    }
+  };
+
+export const updateStock = (id, stock) => async (dispatch, getState) => {
+  setLoading();
+
+  const {
+    user: { userInfo },
+  } = getState();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${userInfo.token}`,
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const { data } = await axios.put(
+      `/api/stock/update/${id}`,
+      {
+        stock: stock,
+      },
+      config
+    );
+    dispatch(setProduct(data));
+    dispatch(setProductUpdateFlag());
+  } catch (error) {
+    setError(
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+        ? error.message
+        : "An expected error has occured. Please try again later."
+    );
+  }
+};
+
+export const deleteProduct = (id) => async (dispatch, getState) => {
+  setLoading();
+  const {
+    user: { userInfo },
+  } = getState();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${userInfo.token}`,
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const { data } = await axios.delete(`api/products/${id}`, config);
+    dispatch(setProducts(data));
+    dispatch(setProductUpdateFlag());
+    dispatch(resetError());
+  } catch (error) {
+    setError(
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+        ? error.message
+        : "An expected error has occured. Please try again later."
+    );
+  }
+};
+
+export const uploadProduct = (newProduct) => async (dispatch, getState) => {
+  setLoading();
+
+  const {
+    user: { userInfo },
+  } = getState();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${userInfo.token}`,
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const { data } = await axios.post(`api/products`, newProduct, config);
+    dispatch(setProducts(data));
+    dispatch(setProductUpdateFlag());
+  } catch (error) {
+    setError(
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+        ? error.message
+        : "An expected error has occured. Please try again later."
+    );
+  }
+};
