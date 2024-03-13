@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 //react
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link as ReactLink, useLocation, useNavigate } from "react-router-dom";
 
 //icons
@@ -20,7 +20,6 @@ import {
   Box,
   Button,
   Flex,
-  HStack,
   Heading,
   Image,
   Spinner,
@@ -28,11 +27,11 @@ import {
   Text,
   Wrap,
   useToast,
-  Tooltip,
   Input,
   Icon,
   useColorModeValue,
   Skeleton,
+  useDisclosure,
 } from "@chakra-ui/react";
 
 //redux
@@ -41,7 +40,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProduct } from "../redux/actions/productActions";
 import { addSalesItem } from "../redux/actions/salesActions";
-
 import * as Yup from "yup";
 import { Formik } from "formik";
 
@@ -56,7 +54,8 @@ const ProductScreen = () => {
   const dispatch = useDispatch();
   const { favorites } = useSelector((state) => state.save);
   const { loading, error, product } = useSelector((state) => state.product);
-
+  const cancelRef = useRef();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
 
   const { userInfo } = useSelector((state) => state.user);
@@ -89,7 +88,6 @@ const ProductScreen = () => {
       navigate(redirect);
     }
   };
-
   const addItem = () => {
     if (salesItems.some((item) => item.id === id)) {
       salesItems.find((item) => {
@@ -267,7 +265,6 @@ const ProductScreen = () => {
               pr={{ base: "0", md: "row" }}
               flex="1.5"
               mb={{ base: "12", md: "none" }}
-              //w={{ lg: "45vw" }}
             >
               <Flex justify={"space-between"} alignItems={"center"}>
                 {product.productIsNew ? (
@@ -422,15 +419,16 @@ const ProductScreen = () => {
                 userInfo.isSuperAdmin && (
                   <Stack spacing={{ lg: 10, base: 10 }}>
                     <Button
-                      as={ReactLink}
                       colorScheme="blue"
                       variant={"outline"}
                       borderRadius={50}
                       mt={{ lg: 15, base: 10 }}
-                      to="/update-prodcut"
+                      as={ReactLink}
+                      to={`/update-product/${id}`}
                     >
                       <Text fontWeight={"bold"}>Update Item</Text>
                     </Button>
+
                     <Button colorScheme="red" borderRadius={50}>
                       <Text fontWeight={"bold"}>Delete Product</Text>
                     </Button>

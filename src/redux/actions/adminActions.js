@@ -185,7 +185,7 @@ export const updateProduct =
 
     try {
       await axios.put(
-        "api/products",
+        `${ipAddress}/api/products`,
         {
           id,
           name,

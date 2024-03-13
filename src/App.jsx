@@ -85,7 +85,7 @@ const App = () => {
                 />
                 <Route path="/brand/:brand" element={<BrandScreen />} />
                 <Route
-                  path="/update-prodcut"
+                  path="/update-product/:id"
                   element={<UpdateProductScreen />}
                 />
                 <Route path="/admin-console" element={<AdminConsoleScreen />} />
