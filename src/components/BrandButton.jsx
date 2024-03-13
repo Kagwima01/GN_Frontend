@@ -4,7 +4,7 @@ import { useNavigate, Link as ReactLink } from "react-router-dom";
 
 const BrandButton = ({ brand }) => {
   const textMode = useColorModeValue("gray.700", "black.900");
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   return (
     <Button

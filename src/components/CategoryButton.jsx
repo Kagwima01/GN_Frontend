@@ -4,7 +4,7 @@ import { useNavigate, Link as ReactLink } from "react-router-dom";
 
 const CategoryButton = ({ category }) => {
   const textMode = useColorModeValue("black.900", "gray.800");
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   return (
     <Button
