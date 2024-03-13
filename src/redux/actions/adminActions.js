@@ -184,7 +184,7 @@ export const updateProduct =
     };
 
     try {
-      const { data } = await axios.put(
+      await axios.put(
         "api/products",
         {
           id,
@@ -201,7 +201,7 @@ export const updateProduct =
         },
         config
       );
-      dispatch(setProducts(data));
+      //dispatch(setProducts(data));
       dispatch(setProductUpdateFlag());
     } catch (error) {
       setError(
@@ -296,8 +296,12 @@ export const uploadProduct = (newProduct) => async (dispatch, getState) => {
   };
 
   try {
-    await axios.post(`${ipAddress}/api/products`, newProduct, config);
-    //dispatch(setProducts(data));
+    const { data } = await axios.post(
+      `${ipAddress}/api/products`,
+      newProduct,
+      config
+    );
+    dispatch(setProducts(data));
     dispatch(setProductUpdateFlag());
   } catch (error) {
     setError(
