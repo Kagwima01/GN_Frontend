@@ -296,12 +296,8 @@ export const uploadProduct = (newProduct) => async (dispatch, getState) => {
   };
 
   try {
-    const { data } = await axios.post(
-      `${ipAddress}/api/products`,
-      newProduct,
-      config
-    );
-    dispatch(setProducts(data));
+    await axios.post(`${ipAddress}/api/products`, newProduct, config);
+    //dispatch(setProducts(data));
     dispatch(setProductUpdateFlag());
   } catch (error) {
     setError(

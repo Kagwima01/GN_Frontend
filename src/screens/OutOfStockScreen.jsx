@@ -38,7 +38,7 @@ const OutOfStockScreen = () => {
   };
 
   return (
-    <Stack minHeight="90vh" flexDirection={"column"}>
+    <Stack minHeight="100vh" flexDirection={"column"}>
       <Heading title={"Out Of Stock"} />
 
       {loading ? (

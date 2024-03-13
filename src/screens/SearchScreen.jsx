@@ -33,7 +33,7 @@ const SearchScreen = () => {
     <Stack
       spacing="30px"
       justify="center"
-      minHeight="90vh"
+      minHeight="100vh"
       flexDirection={"column"}
       justifyContent={"center"}
     >

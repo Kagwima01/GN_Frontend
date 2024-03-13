@@ -8,8 +8,8 @@ export default defineConfig({
     // proxy: {
     //   "/api": "http://localhost:5000",
     // },
-    proxy: {
-      "/api": "https://gn-backend.onrender.com",
-    },
+    // proxy: {
+    //   "/api": "https://gn-backend.onrender.com",
+    // },
   },
 });

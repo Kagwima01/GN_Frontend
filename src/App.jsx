@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 //chakra
 import { ChakraProvider } from "@chakra-ui/react";
-import { VStack, Spinner } from "@chakra-ui/react";
+import { VStack, Spinner, useColorModeValue } from "@chakra-ui/react";
 
 //screens
 import ProductsScreen from "./screens/ProductsScreen";
@@ -33,7 +33,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const App = () => {
   const [googleClient, setGoogleClient] = useState(null);
-
+  const mode1 = useColorModeValue("blue.500", "blue.300");
   useEffect(() => {
     const googleKey = async () => {
       const { data: googleId } = await axios.get(
@@ -52,7 +52,7 @@ const App = () => {
             thickness="2px"
             speed="0.65s"
             emptyColor="gray.200"
-            color="blue.500"
+            color={mode1}
             size="xl"
           />
         </VStack>
