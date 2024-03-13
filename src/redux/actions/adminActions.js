@@ -184,7 +184,7 @@ export const updateProduct =
     };
 
     try {
-      await axios.put(
+      const { data } = await axios.put(
         "api/products",
         {
           id,
@@ -201,7 +201,7 @@ export const updateProduct =
         },
         config
       );
-      //dispatch(setProducts(data));
+      dispatch(setProducts(data));
       dispatch(setProductUpdateFlag());
     } catch (error) {
       setError(
