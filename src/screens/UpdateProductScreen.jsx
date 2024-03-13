@@ -60,24 +60,16 @@ const UpdateProductScreen = () => {
         productIsNew
       )
     );
-    if (productUpdate) {
-      toast({
-        description: "Product has been updated.",
-        status: "success",
-        isClosable: true,
-      });
-    } else {
-      toast({
-        description: "Product could not be updated.",
-        status: "error",
-        isClosable: true,
-      });
-    }
+    toast({
+      description: "Product has been updated.",
+      status: "success",
+      isClosable: true,
+    });
   };
 
   useEffect(() => {
     dispatch(getProduct(id));
-  }, [dispatch, id, productUpdate, toast]);
+  }, [dispatch, id]);
 
   return (
     <Stack minHeight="100vh" flexDirection={"column"}>
@@ -136,7 +128,7 @@ const UpdateProductScreen = () => {
                 Image one
               </Text>
               <Input
-                size={{ lg: "md", md: "sm", base: "xs" }}
+                size={"sm"}
                 backgroundColor={mode2}
                 value={imageOne}
                 onChange={(e) => setImageOne(e.target.value)}
@@ -151,7 +143,7 @@ const UpdateProductScreen = () => {
                 Image two
               </Text>
               <Input
-                size={{ lg: "md", md: "sm", base: "xs" }}
+                size={"sm"}
                 backgroundColor={mode2}
                 value={imageTwo}
                 onChange={(e) => setImageTwo(e.target.value)}
@@ -166,7 +158,7 @@ const UpdateProductScreen = () => {
                 Name
               </Text>
               <Input
-                size={{ lg: "md", md: "sm", base: "xs" }}
+                size={"sm"}
                 backgroundColor={mode2}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -181,7 +173,7 @@ const UpdateProductScreen = () => {
                 Stock
               </Text>
               <Input
-                size={{ lg: "md", md: "sm", base: "xs" }}
+                size={"sm"}
                 backgroundColor={mode2}
                 value={stock}
                 onChange={(e) => setStock(e.target.value)}
@@ -196,7 +188,7 @@ const UpdateProductScreen = () => {
                 Selling price
               </Text>
               <Input
-                size={{ lg: "md", md: "sm", base: "xs" }}
+                size={"sm"}
                 backgroundColor={mode2}
                 value={sellingPrice}
                 onChange={(e) => setSellingPrice(e.target.value)}
@@ -211,7 +203,7 @@ const UpdateProductScreen = () => {
                 Buying price
               </Text>
               <Input
-                size={{ lg: "md", md: "sm", base: "xs" }}
+                size={"sm"}
                 backgroundColor={mode2}
                 value={buyingPrice}
                 onChange={(e) => setBuyingPrice(e.target.value)}
@@ -226,7 +218,7 @@ const UpdateProductScreen = () => {
                 Category
               </Text>
               <Input
-                size={{ lg: "md", md: "sm", base: "xs" }}
+                size={"sm"}
                 backgroundColor={mode2}
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
@@ -241,7 +233,7 @@ const UpdateProductScreen = () => {
                 Description
               </Text>
               <Input
-                size={{ lg: "md", md: "sm", base: "xs" }}
+                size={"sm"}
                 backgroundColor={mode2}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -256,7 +248,7 @@ const UpdateProductScreen = () => {
                 Brand
               </Text>
               <Input
-                size={{ lg: "md", md: "sm", base: "xs" }}
+                size={"sm"}
                 backgroundColor={mode2}
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
