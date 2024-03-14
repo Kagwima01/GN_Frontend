@@ -12,6 +12,8 @@ import {
   WrapItem,
   useColorModeValue,
   Flex,
+  Image,
+  Text,
 } from "@chakra-ui/react";
 import ProductCard from "../components/ProductCard";
 import { useState } from "react";
@@ -74,7 +76,16 @@ const SearchScreen = () => {
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       ) : products.length === 0 ? (
-        <></>
+        <Stack alignItems={"center"}>
+          <Text fontWeight={"bold"} fontSize={"xl"}>
+            No Items
+          </Text>
+          <Image
+            src="/Pose23.png"
+            alignSelf={"center"}
+            mr={{ lg: 30, base: 10 }}
+          />
+        </Stack>
       ) : (
         products && (
           <SimpleGrid

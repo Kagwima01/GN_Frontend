@@ -134,36 +134,37 @@ const HomePage = () => {
           <></>
         ) : (
           images && (
-            <Flex flex="1" overflow="hidden">
+            <Flex flex="1" overflow="hidden" mt={{ md: 2, base: 2 }}>
               <Icon
-                position={{ lg: "relative", base: "absolute" }}
+                position={{ lg: "relative", md: "relative", base: "absolute" }}
                 color={{ lg: mode1, base: "blue.500" }}
                 as={FaChevronCircleLeft}
                 alignSelf="center"
                 ml={{ base: 3 }}
-                mr={{ lg: 5 }}
+                mr={{ lg: 5, md: 5 }}
                 onClick={previousImage}
-                w={{ lg: 8, base: 7 }}
-                h={{ lg: 8, base: 7 }}
+                w={{ lg: 8, md: 8, base: 7 }}
+                h={{ lg: 8, md: 8, base: 7 }}
               />
-              <Image
-                src={images[currentIndex]}
-                alt="Lovely Image"
-                fallback={<Skeleton />}
-                maxH="450px"
-                minW="300px"
-                objectFit="cover"
-                flex="1"
-                rounded={"sm"}
-              />
+              <Box w={{ lg: "550px", md: "85vw", base: "100vw" }}>
+                <Image
+                  src={images[currentIndex]}
+                  alt="Lovely Image"
+                  fallback={<Skeleton />}
+                  rounded={"sm"}
+                  w={{ md: "", base: "99vw" }}
+                  h={{ lg: "450px", md: "450px", base: "300px" }}
+                  mx={{ base: "auto" }}
+                />
+              </Box>
               <Icon
                 color={{ lg: mode1, base: "blue.500" }}
                 as={FaChevronCircleRight}
                 alignSelf="center"
-                w={{ lg: 8, base: 7 }}
-                h={{ lg: 8, base: 7 }}
+                w={{ lg: 8, md: 8, base: 7 }}
+                h={{ lg: 8, md: 8, base: 7 }}
                 onClick={nextImage}
-                ml={{ lg: 3, base: -9 }}
+                ml={{ lg: 3, md: 3, base: -9 }}
               />
             </Flex>
           )
