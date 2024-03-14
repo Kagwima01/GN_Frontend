@@ -136,13 +136,15 @@ const HomePage = () => {
           images && (
             <Flex flex="1" overflow="hidden">
               <Icon
-                color={mode1}
+                position={{ lg: "relative", base: "absolute" }}
+                color={{ lg: mode1, base: "blue.500" }}
                 as={FaChevronCircleLeft}
                 alignSelf="center"
-                mx={3}
+                ml={{ base: 3 }}
+                mr={{ lg: 5 }}
                 onClick={previousImage}
-                w={{ lg: 8, sm: 5 }}
-                h={{ lg: 8, sm: 5 }}
+                w={{ lg: 8, base: 7 }}
+                h={{ lg: 8, base: 7 }}
               />
               <Image
                 src={images[currentIndex]}
@@ -152,16 +154,16 @@ const HomePage = () => {
                 minW="300px"
                 objectFit="cover"
                 flex="1"
-                rounded={"md"}
+                rounded={"sm"}
               />
               <Icon
-                color={mode1}
+                color={{ lg: mode1, base: "blue.500" }}
                 as={FaChevronCircleRight}
                 alignSelf="center"
-                mx={3}
-                w={{ lg: 8, sm: 5 }}
-                h={{ lg: 8, sm: 5 }}
+                w={{ lg: 8, base: 7 }}
+                h={{ lg: 8, base: 7 }}
                 onClick={nextImage}
+                ml={{ lg: 3, base: -9 }}
               />
             </Flex>
           )

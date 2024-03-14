@@ -290,9 +290,11 @@ const Navbar = () => {
                   {link.linkName}
                 </NavLink>
               ))}
-              <NavLink key="signUp" path="/registration">
-                Sign Up
-              </NavLink>
+              {userInfo === null && (
+                <NavLink key="signUp" path="/registration">
+                  Sign Up
+                </NavLink>
+              )}
             </Stack>
           </Box>
         ) : null}

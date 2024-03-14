@@ -31,11 +31,10 @@ const SearchScreen = () => {
 
   return (
     <Stack
-      spacing="30px"
-      justify="center"
+      spacing={{ lg: "30px" }}
       minHeight="100vh"
       flexDirection={"column"}
-      justifyContent={"center"}
+      alignItems={"center"}
     >
       <InputGroup w={"90%"} mt={5}>
         <Input
@@ -80,9 +79,9 @@ const SearchScreen = () => {
         products && (
           <SimpleGrid
             py={4}
-            columns={{ lg: 4, md: 3, sm: 2 }}
-            columnGap={{ lg: 8, md: 6, sm: 4 }}
-            rowGap={{ lg: 8, md: 6, sm: 4 }}
+            columns={{ lg: 4, md: 3, base: 2 }}
+            columnGap={{ lg: 8, md: 6, base: 4 }}
+            rowGap={{ lg: 8, md: 6, base: 4 }}
           >
             {products.map((product) => (
               <WrapItem key={product._id}>
