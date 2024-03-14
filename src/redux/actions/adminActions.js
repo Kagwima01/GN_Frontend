@@ -229,7 +229,7 @@ export const updateStock = (id, stock) => async (dispatch, getState) => {
 
   try {
     const { data } = await axios.put(
-      `/api/stock/update/${id}`,
+      `${ipAddress}/api/stock/update/${id}`,
       {
         stock: stock,
       },
